@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { useState, useRef, useEffect, useCallback } from "react"
-import Image from "next/image"
+import { useState, useRef, useEffect, useCallback } from "react";
+import Image from "next/image";
 
 interface BeforeAfterSliderProps {
-  beforeImage: string
-  afterImage: string
-  beforeLabel?: string
-  afterLabel?: string
+  beforeImage: string;
+  afterImage: string;
+  beforeLabel?: string;
+  afterLabel?: string;
 }
 
 export function BeforeAfterSlider({
@@ -16,62 +16,62 @@ export function BeforeAfterSlider({
   beforeLabel = "Before",
   afterLabel = "After",
 }: BeforeAfterSliderProps) {
-  const [sliderPosition, setSliderPosition] = useState(50)
-  const [isDragging, setIsDragging] = useState(false)
-  const containerRef = useRef<HTMLDivElement>(null)
+  const [sliderPosition, setSliderPosition] = useState(50);
+  const [isDragging, setIsDragging] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const handleMouseDown = () => {
-    setIsDragging(true)
-  }
+    setIsDragging(true);
+  };
 
   const handleMouseUp = () => {
-    setIsDragging(false)
-  }
+    setIsDragging(false);
+  };
 
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {
       if (isDragging && containerRef.current) {
-        const rect = containerRef.current.getBoundingClientRect()
-        const x = e.clientX - rect.left
-        const containerWidth = rect.width
+        const rect = containerRef.current.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const containerWidth = rect.width;
 
         // Calculate position as percentage
-        let newPosition = (x / containerWidth) * 100
+        let newPosition = (x / containerWidth) * 100;
 
         // Clamp between 0 and 100
-        newPosition = Math.max(0, Math.min(100, newPosition))
+        newPosition = Math.max(0, Math.min(100, newPosition));
 
-        setSliderPosition(newPosition)
+        setSliderPosition(newPosition);
       }
     },
-    [isDragging],
-  )
+    [isDragging]
+  );
 
   const handleTouchMove = (e: TouchEvent) => {
     if (containerRef.current) {
-      const rect = containerRef.current.getBoundingClientRect()
-      const x = e.touches[0].clientX - rect.left
-      const containerWidth = rect.width
+      const rect = containerRef.current.getBoundingClientRect();
+      const x = e.touches[0].clientX - rect.left;
+      const containerWidth = rect.width;
 
       // Calculate position as percentage
-      let newPosition = (x / containerWidth) * 100
+      let newPosition = (x / containerWidth) * 100;
 
       // Clamp between 0 and 100
-      newPosition = Math.max(0, Math.min(100, newPosition))
+      newPosition = Math.max(0, Math.min(100, newPosition));
 
-      setSliderPosition(newPosition)
+      setSliderPosition(newPosition);
     }
-  }
+  };
 
   useEffect(() => {
-    document.addEventListener("mousemove", handleMouseMove)
-    document.addEventListener("mouseup", handleMouseUp)
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
 
     return () => {
-      document.removeEventListener("mousemove", handleMouseMove)
-      document.removeEventListener("mouseup", handleMouseUp)
-    }
-  }, [isDragging, handleMouseMove])
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, [isDragging, handleMouseMove]);
 
   return (
     <div
@@ -82,20 +82,46 @@ export function BeforeAfterSlider({
     >
       {/* Before Image (Full width) */}
       <div className="absolute top-0 left-0 w-full h-full">
-        <Image src={beforeImage || "/placeholder.svg"} alt="Before" className="w-full h-full object-cover" fill />
-        <div className="absolute top-4 left-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm">{beforeLabel}</div>
+        <Image
+          src={beforeImage || "/placeholder.svg"}
+          alt="Before"
+          className="w-full h-full object-cover"
+          fill
+        />
+        <div className="absolute top-4 left-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm">
+          {beforeLabel}
+        </div>
       </div>
 
       {/* After Image (Clipped) */}
-      <div className="absolute top-0 left-0 h-full overflow-hidden" style={{ width: `${sliderPosition}%` }}>
-        <Image
-          src={afterImage || "/placeholder.svg"}
-          alt="After"
-          className="absolute top-0 left-0 w-full h-full object-cover"
-          fill
-          style={{ width: `${100 / (sliderPosition / 100)}%`, minWidth: "100%" }}
-        />
-        <div className="absolute top-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm">{afterLabel}</div>
+      <div
+        className="absolute top-0 left-0 h-full overflow-hidden"
+        style={{ width: `${sliderPosition}%` }}
+      >
+        {/* This div scales the image content to be the full width of the main container,
+            allowing the parent 'clipper' div to reveal the correct portion. */}
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            height: "100%",
+            // Calculate width to make image appear as wide as the main slider container.
+            // Width is relative to this div's parent (the clipper).
+            width:
+              sliderPosition > 0 ? `${100 / (sliderPosition / 100)}%` : "100%",
+          }}
+        >
+          <Image
+            src={afterImage || "/placeholder.svg"}
+            alt="After"
+            className="object-cover" // `fill` handles sizing and positioning.
+            fill
+          />
+        </div>
+        <div className="absolute top-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm">
+          {afterLabel}
+        </div>
       </div>
 
       {/* Slider Control */}
@@ -123,5 +149,5 @@ export function BeforeAfterSlider({
         </div>
       </div>
     </div>
-  )
+  );
 }

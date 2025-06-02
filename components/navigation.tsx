@@ -1,27 +1,39 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Menu, X, Home, Building, Info, FileText, LogIn, UserPlus, PenToolIcon as Tool } from "lucide-react"
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Menu,
+  X,
+  Home,
+  Building,
+  Info,
+  FileText,
+  LogIn,
+  UserPlus,
+  PenToolIcon as Tool,
+} from "lucide-react";
 
 export function Navigation() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
+      setIsScrolled(window.scrollY > 50);
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-eureka-black/95 backdrop-blur-md shadow-2xl" : "bg-eureka-black"
+      className={`w-full transition-all duration-300 sticky top-0 z-50 ${
+        isScrolled
+          ? "bg-eureka-black/95 backdrop-blur-md shadow-2xl"
+          : "bg-eureka-black"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -99,7 +111,10 @@ export function Navigation() {
                 </Button>
               </Link>
               <Link href="/register">
-                <Button size="sm" className="gradient-red hover:scale-105 transition-all duration-300 shadow-lg">
+                <Button
+                  size="sm"
+                  className="gradient-red hover:scale-105 transition-all duration-300 shadow-lg"
+                >
                   <UserPlus className="h-4 w-4 mr-2" />
                   Register
                 </Button>
@@ -115,10 +130,14 @@ export function Navigation() {
             >
               <div className="relative w-6 h-6">
                 <Menu
-                  className={`h-6 w-6 absolute transition-all duration-300 ${isOpen ? "opacity-0 rotate-180" : "opacity-100 rotate-0"}`}
+                  className={`h-6 w-6 absolute transition-all duration-300 ${
+                    isOpen ? "opacity-0 rotate-180" : "opacity-100 rotate-0"
+                  }`}
                 />
                 <X
-                  className={`h-6 w-6 absolute transition-all duration-300 ${isOpen ? "opacity-100 rotate-0" : "opacity-0 -rotate-180"}`}
+                  className={`h-6 w-6 absolute transition-all duration-300 ${
+                    isOpen ? "opacity-100 rotate-0" : "opacity-0 -rotate-180"
+                  }`}
                 />
               </div>
             </button>
@@ -178,7 +197,10 @@ export function Navigation() {
                 </Button>
               </Link>
               <Link href="/register" onClick={() => setIsOpen(false)}>
-                <Button size="sm" className="w-full gradient-red transition-all duration-300">
+                <Button
+                  size="sm"
+                  className="w-full gradient-red transition-all duration-300"
+                >
                   Register
                 </Button>
               </Link>
@@ -187,5 +209,5 @@ export function Navigation() {
         </div>
       </div>
     </nav>
-  )
+  );
 }
