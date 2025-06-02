@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -55,17 +56,17 @@ export function PropertySlider({ properties }: PropertySliderProps) {
   }
 
   // Show 3 properties at once on desktop, 1 on mobile
-  const getVisibleProperties = () => {
-    const visibleCount = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1
-    const result = []
+  // const getVisibleProperties = () => {
+  //   const visibleCount = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1
+  //   const result = []
 
-    for (let i = 0; i < visibleCount; i++) {
-      const index = (currentIndex + i) % properties.length
-      result.push(properties[index])
-    }
+  //   for (let i = 0; i < visibleCount; i++) {
+  //     const index = (currentIndex + i) % properties.length
+  //     result.push(properties[index])
+  //   }
 
-    return result
-  }
+  //   return result
+  // }
 
   const [visibleProperties, setVisibleProperties] = useState<Property[]>([])
 
@@ -100,11 +101,12 @@ export function PropertySlider({ properties }: PropertySliderProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
             {visibleProperties.map((property, index) => (
               <Card key={`${property.id}-${index}`} className="overflow-hidden hover-lift bg-white shadow-lg border-0">
-                <div className="relative group">
-                  <img
+                <div className="relative group h-48">
+                  <Image
                     src={property.image || "/placeholder.svg"}
                     alt={property.title}
-                    className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    fill
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <Badge

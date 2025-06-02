@@ -81,7 +81,7 @@ export default function RequirementsPage() {
                 <ul className="space-y-3">
                   <li className="flex items-start">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Government-issued photo ID (driver's license or passport)</span>
+                    <span>Government-issued photo ID (driver&apos;s license or passport)</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
@@ -230,7 +230,7 @@ export default function RequirementsPage() {
                 <ul className="space-y-3">
                   <li className="flex items-start">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Homeowner's insurance policy quote</span>
+                    <span>Homeowner&apos;s insurance policy quote</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />

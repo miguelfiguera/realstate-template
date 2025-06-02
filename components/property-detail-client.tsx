@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -288,10 +289,12 @@ export function PropertyDetailClient({ property }: PropertyDetailClientProps) {
               </CardHeader>
               <CardContent>
                 <div className="flex items-center space-x-4 mb-6">
-                  <img
+                  <Image
                     src={property.agent.image || "/placeholder.svg"}
                     alt={property.agent.name}
                     className="w-16 h-16 rounded-full object-cover"
+                    width={64}
+                    height={64}
                   />
                   <div>
                     <h3 className="font-semibold text-lg">{property.agent.name}</h3>

@@ -12,7 +12,7 @@ export function Footer() {
               <span className="text-2xl font-bold">EUREKA</span>
             </div>
             <p className="text-gray-300 mb-4">
-              Your trusted partner in real estate. We help you find the perfect property for your needs, whether you're
+              Your trusted partner in real estate. We help you find the perfect property for your needs, whether you&apos;re
               buying, selling, or renting.
             </p>
             <div className="space-y-2">

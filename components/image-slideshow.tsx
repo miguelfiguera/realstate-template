@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react"
 
@@ -44,10 +45,11 @@ export function ImageSlideshow({ images, title }: ImageSlideshowProps) {
       <div className="relative">
         {/* Main Image */}
         <div className="relative h-96 md:h-[500px] overflow-hidden">
-          <img
+          <Image
             src={images[currentIndex] || "/placeholder.svg"}
             alt={`${title} - Image ${currentIndex + 1}`}
             className="w-full h-full object-cover transition-transform duration-300 hover:scale-105 cursor-pointer"
+            fill
             onClick={() => openLightbox(currentIndex)}
           />
 
@@ -90,15 +92,16 @@ export function ImageSlideshow({ images, title }: ImageSlideshowProps) {
             {images.map((image, index) => (
               <button
                 key={index}
-                className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
+                className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all duration-200 relative ${
                   index === currentIndex ? "border-eureka-red scale-105" : "border-gray-200 hover:border-gray-400"
                 }`}
                 onClick={() => setCurrentIndex(index)}
               >
-                <img
+                <Image
                   src={image || "/placeholder.svg"}
                   alt={`${title} - Thumbnail ${index + 1}`}
                   className="w-full h-full object-cover"
+                  fill
                 />
               </button>
             ))}
@@ -121,10 +124,12 @@ export function ImageSlideshow({ images, title }: ImageSlideshowProps) {
             </Button>
 
             {/* Main Lightbox Image */}
-            <img
+            <Image
               src={images[lightboxIndex] || "/placeholder.svg"}
               alt={`${title} - Image ${lightboxIndex + 1}`}
               className="max-w-full max-h-full object-contain"
+              width={1200} // Example width, adjust as needed
+              height={800} // Example height, adjust as needed
             />
 
             {/* Lightbox Navigation */}

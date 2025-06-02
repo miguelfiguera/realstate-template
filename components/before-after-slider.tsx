@@ -1,6 +1,7 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useCallback } from "react"
+import Image from "next/image"
 
 interface BeforeAfterSliderProps {
   beforeImage: string
@@ -27,21 +28,24 @@ export function BeforeAfterSlider({
     setIsDragging(false)
   }
 
-  const handleMouseMove = (e: MouseEvent) => {
-    if (isDragging && containerRef.current) {
-      const rect = containerRef.current.getBoundingClientRect()
-      const x = e.clientX - rect.left
-      const containerWidth = rect.width
+  const handleMouseMove = useCallback(
+    (e: MouseEvent) => {
+      if (isDragging && containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect()
+        const x = e.clientX - rect.left
+        const containerWidth = rect.width
 
-      // Calculate position as percentage
-      let newPosition = (x / containerWidth) * 100
+        // Calculate position as percentage
+        let newPosition = (x / containerWidth) * 100
 
-      // Clamp between 0 and 100
-      newPosition = Math.max(0, Math.min(100, newPosition))
+        // Clamp between 0 and 100
+        newPosition = Math.max(0, Math.min(100, newPosition))
 
-      setSliderPosition(newPosition)
-    }
-  }
+        setSliderPosition(newPosition)
+      }
+    },
+    [isDragging],
+  )
 
   const handleTouchMove = (e: TouchEvent) => {
     if (containerRef.current) {
@@ -67,7 +71,7 @@ export function BeforeAfterSlider({
       document.removeEventListener("mousemove", handleMouseMove)
       document.removeEventListener("mouseup", handleMouseUp)
     }
-  }, [isDragging])
+  }, [isDragging, handleMouseMove])
 
   return (
     <div
@@ -78,16 +82,17 @@ export function BeforeAfterSlider({
     >
       {/* Before Image (Full width) */}
       <div className="absolute top-0 left-0 w-full h-full">
-        <img src={beforeImage || "/placeholder.svg"} alt="Before" className="w-full h-full object-cover" />
+        <Image src={beforeImage || "/placeholder.svg"} alt="Before" className="w-full h-full object-cover" fill />
         <div className="absolute top-4 left-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm">{beforeLabel}</div>
       </div>
 
       {/* After Image (Clipped) */}
       <div className="absolute top-0 left-0 h-full overflow-hidden" style={{ width: `${sliderPosition}%` }}>
-        <img
+        <Image
           src={afterImage || "/placeholder.svg"}
           alt="After"
           className="absolute top-0 left-0 w-full h-full object-cover"
+          fill
           style={{ width: `${100 / (sliderPosition / 100)}%`, minWidth: "100%" }}
         />
         <div className="absolute top-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm">{afterLabel}</div>

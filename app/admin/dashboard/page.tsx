@@ -78,7 +78,7 @@ const mockProperties = [
 
 export default function AdminDashboard() {
   const [searchTerm, setSearchTerm] = useState("")
-  const [statusFilter, setStatusFilter] = useState("all")
+  // const [statusFilter, setStatusFilter] = useState("all")
   const [activeTab, setActiveTab] = useState("all")
 
   const getStatusBadge = (status: string) => {

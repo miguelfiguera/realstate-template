@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { MapPin, Bed, Bath, Square, Filter } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 const allProperties = [
   {
@@ -323,10 +324,12 @@ export default function PropertiesPage() {
               {filteredProperties.map((property) => (
                 <Card key={property.id} className="overflow-hidden hover:shadow-lg transition-shadow">
                   <div className="relative">
-                    <img
+                    <Image
                       src={property.image || "/placeholder.svg"}
                       alt={property.title}
                       className="w-full h-48 object-cover"
+                      width={400}
+                      height={300}
                     />
                     <Badge
                       className={`absolute top-2 right-2 ${

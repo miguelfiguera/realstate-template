@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Users, Award, Home, TrendingUp } from "lucide-react"
+import Image from "next/image"
 
 export default function AboutPage() {
   return (
@@ -12,8 +13,8 @@ export default function AboutPage() {
             About <span className="text-eureka-red">Eureka</span>
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Discovering exceptional real estate opportunities since 2010. We're more than just a real estate company –
-            we're your partners in finding the perfect home.
+            Discovering exceptional real estate opportunities since 2010. We&apos;re more than just a real estate company –
+            we&apos;re your partners in finding the perfect home.
           </p>
         </div>
 
@@ -24,26 +25,28 @@ export default function AboutPage() {
             <div className="space-y-4 text-gray-600">
               <p>
                 Founded in 2010 by a team of passionate real estate professionals, Eureka Real Estate began with a
-                simple mission: to revolutionize the way people buy, sell, and rent properties. Our name "Eureka"
+                simple mission: to revolutionize the way people buy, sell, and rent properties. Our name &quot;Eureka&quot;
                 represents that moment of discovery – the excitement of finding the perfect home.
               </p>
               <p>
                 What started as a small local agency has grown into one of the most trusted real estate companies in the
-                region. We've helped thousands of families find their dream homes, assisted investors in building their
+                region. We&apos;ve helped thousands of families find their dream homes, assisted investors in building their
                 portfolios, and supported property owners in maximizing their returns.
               </p>
               <p>
                 Our success is built on three core principles: integrity, expertise, and exceptional service. We believe
-                that buying or selling a property is one of life's most important decisions, and we're committed to
+                that buying or selling a property is one of life&apos;s most important decisions, and we&apos;re committed to
                 making that process as smooth and rewarding as possible.
               </p>
             </div>
           </div>
           <div className="relative">
-            <img
-              src="/placeholder.svg?height=400&width=600"
+            <Image
+              src="/placeholder.svg"
               alt="Eureka Real Estate Office"
               className="rounded-lg shadow-lg w-full h-full object-cover"
+              width={600}
+              height={400}
             />
             <div className="absolute inset-0 bg-eureka-red bg-opacity-10 rounded-lg"></div>
           </div>
@@ -98,7 +101,7 @@ export default function AboutPage() {
             <CardContent className="pt-0">
               <h3 className="text-2xl font-bold text-eureka-black mb-4">Our Mission</h3>
               <p className="text-gray-600">
-                To provide exceptional real estate services that exceed our clients' expectations. We strive to make
+                To provide exceptional real estate services that exceed our clients&apos; expectations. We strive to make
                 every transaction smooth, transparent, and successful while building lasting relationships based on
                 trust and integrity.
               </p>
@@ -147,7 +150,7 @@ export default function AboutPage() {
               </div>
               <h3 className="text-xl font-semibold mb-2">Commitment</h3>
               <p className="text-gray-600">
-                We're committed to our clients' success and work tirelessly to achieve their goals.
+                We&apos;re committed to our clients&apos; success and work tirelessly to achieve their goals.
               </p>
             </div>
           </div>
@@ -163,10 +166,12 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="overflow-hidden">
               <div className="relative">
-                <img
-                  src="/placeholder.svg?height=300&width=300"
+                <Image
+                  src="/placeholder.svg"
                   alt="Sarah Johnson"
                   className="w-full h-64 object-cover"
+                  width={300}
+                  height={300}
                 />
               </div>
               <CardContent className="p-6">
@@ -180,10 +185,12 @@ export default function AboutPage() {
 
             <Card className="overflow-hidden">
               <div className="relative">
-                <img
-                  src="/placeholder.svg?height=300&width=300"
+                <Image
+                  src="/placeholder.svg"
                   alt="Michael Chen"
                   className="w-full h-64 object-cover"
+                  width={300}
+                  height={300}
                 />
               </div>
               <CardContent className="p-6">
@@ -197,10 +204,12 @@ export default function AboutPage() {
 
             <Card className="overflow-hidden">
               <div className="relative">
-                <img
-                  src="/placeholder.svg?height=300&width=300"
+                <Image
+                  src="/placeholder.svg"
                   alt="Emily Rodriguez"
                   className="w-full h-64 object-cover"
+                  width={300}
+                  height={300}
                 />
               </div>
               <CardContent className="p-6">

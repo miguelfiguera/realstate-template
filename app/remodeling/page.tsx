@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -161,7 +162,7 @@ export default function RemodelingPage() {
               <span className="text-eureka-red"> Space</span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto">
-              Expert remodeling services to increase your home's value and create the living space of your dreams
+              Expert remodeling services to increase your home&apos;s value and create the living space of your dreams
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-eureka-red hover:bg-red-700 text-white">
@@ -201,10 +202,11 @@ export default function RemodelingPage() {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="h-48 relative overflow-hidden">
-                  <img
+                  <Image
                     src={service.image || "/placeholder.svg"}
                     alt={service.title}
                     className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                    fill
                   />
                   <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/70 to-transparent" />
                   <div className="absolute bottom-0 left-0 w-full p-4">
@@ -315,7 +317,7 @@ export default function RemodelingPage() {
               <TabsTrigger value="project2">Bathroom Renovation</TabsTrigger>
               <TabsTrigger value="project3">Open Concept Living</TabsTrigger>
             </TabsList>
-            {beforeAfterProjects.map((project, index) => (
+            {beforeAfterProjects.map((project) => (
               <TabsContent key={project.id} value={`project${project.id}`} className="animate-fadeInUp">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                   <div>
@@ -362,7 +364,7 @@ export default function RemodelingPage() {
               What Our <span className="text-eureka-red">Clients</span> Say
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Don't just take our word for it. Hear from homeowners who have experienced our remodeling services
+              Don&apos;t just take our word for it. Hear from homeowners who have experienced our remodeling services
               firsthand.
             </p>
           </div>
@@ -376,10 +378,12 @@ export default function RemodelingPage() {
               >
                 <CardContent className="p-8">
                   <div className="flex items-center mb-6">
-                    <img
+                    <Image
                       src={testimonial.image || "/placeholder.svg"}
                       alt={testimonial.name}
                       className="w-16 h-16 rounded-full object-cover mr-4"
+                      width={64}
+                      height={64}
                     />
                     <div>
                       <h4 className="font-semibold text-lg">{testimonial.name}</h4>
@@ -391,7 +395,7 @@ export default function RemodelingPage() {
                       <Star key={i} className="h-5 w-5 text-yellow-500 fill-current" />
                     ))}
                   </div>
-                  <p className="text-gray-700 italic mb-4">"{testimonial.quote}"</p>
+                  <p className="text-gray-700 italic mb-4">&quot;{testimonial.quote}&quot;</p>
                   <Badge className="bg-eureka-red">{testimonial.project}</Badge>
                 </CardContent>
               </Card>
@@ -556,13 +560,15 @@ export default function RemodelingPage() {
                 </div>
               </div>
               <div className="flex items-center">
-                <img src="/placeholder.svg?height=60&width=120&text=BBB+A+" alt="BBB A+ Rating" className="h-12 mr-6" />
-                <img
-                  src="/placeholder.svg?height=60&width=120&text=Licensed"
+                <Image src="/placeholder.svg" alt="BBB A+ Rating" className="h-12 mr-6" height={60} width={120} />
+                <Image
+                  src="/placeholder.svg"
                   alt="Licensed Contractor"
                   className="h-12 mr-6"
+                  height={60}
+                  width={120}
                 />
-                <img src="/placeholder.svg?height=60&width=120&text=Insured" alt="Fully Insured" className="h-12" />
+                <Image src="/placeholder.svg" alt="Fully Insured" className="h-12" height={60} width={120} />
               </div>
             </div>
             <div className="bg-white rounded-lg shadow-xl p-8 animate-fadeInRight">
